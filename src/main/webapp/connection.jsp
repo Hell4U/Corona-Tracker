@@ -26,7 +26,7 @@
             ResultSet rs=st.executeQuery("SELECT * from ADMIN");
             
             while(rs.next()){
-                out.println(rs.getString("USERNAME"));
+                out.println(rs.getString("PASSWORD"));
             }
            } catch (Exception e){
                
