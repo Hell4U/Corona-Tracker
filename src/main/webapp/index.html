@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="img-shadow"></div>
+        <nav>
+            <div class="title">
+                Covid-19 Tracker
+            </div>
+        </nav>
+        
+        <div class="article">
+
+            <div class="box-container">
+                <div class="btn-container">
+                    <button class="btn" id="doctor">Doctor</button>
+                    <button class="btn" id="admin">Admin</button>
+                    <button class="btn" id="user">View Table</button>
+                </div>
+            </div>
+
+            <div class="txt-container">
+                <p>
+                
+                    <ul>
+                        Guidelines for the protection from Covid-19<br><br>
+                        <li>Hell</li>
+                        <li>das</li>
+                        <li>asd</li>
+                        <li>asd</li>
+                        <li>d2</li>
+                    </ul>
+                </p>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        const doc=document.getElementById("doctor");
+        const adm=document.getElementById("admin");
+        const usr=document.getElementById("user");
+
+        doc.addEventListener("click",()=>{
+            console.log(1);
+            window.location='doctor_login.jsp';
+        })
+
+        adm.addEventListener("click",()=>{
+            console.log(2);
+            window.location='admin_login.jsp';
+        })
+
+        usr.addEventListener("click",()=>{
+            console.log(3);
+            window.location='view_result.jsp';
+        })
+    </script>
+</body>
+</html>
