@@ -4,7 +4,7 @@
     Author     : ISHAN
 --%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
-<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>  
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -18,19 +18,13 @@
     <body>
         
        <%
-           try{
-            Connection con=null;
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6405344","sql6405344","kNClFQPRil");
-            Statement st=con.createStatement();
-            ResultSet rs=st.executeQuery("SELECT * from ADMIN");
-            
-            while(rs.next()){
-                out.println(rs.getString("PASSWORD"));
+            try{
+                Connection con=null;
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con=DriverManager.getConnection("jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6405344","sql6405344","kNClFQPRil");
+                Statement st=con.createStatement();
+            }catch (Exception e){ 
             }
-           } catch (Exception e){
-               
-           }
             
             
        %>
