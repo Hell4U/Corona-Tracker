@@ -63,7 +63,7 @@
 
 .box-container{
     margin-right: 10%;
-    /* border: 2px solid purple; */
+    border: 2px solid purple;
     display: flex;
     flex-direction: column;
     align-items:center;
@@ -71,82 +71,27 @@
     padding: 0 5%;
 }
 
-.btn-container{
-    display: flex;
-    flex-direction: column;
-}
-
-.btn{
-    color:rgb(255, 210, 143);
-    margin-bottom: 15%;
-    cursor: pointer;
-    font-size: clamp(15px,20px,20px);
-    padding:15px;
-    max-width: 100%;
-    border-color: #838383;
-    background: transparent;
-    position: relative;
-    transition: all 300ms ease-in-out;
-    outline: none;
-    left: -250px;
+.frm-container{
+    /* min-height: 250px;
+    height: auto; */
+    min-width:450px;
+    width: auto;
+    border: 2px solid yellow;
+    padding:10%;
+    background-color:rgba(255, 255, 255, 0.185);
+    backdrop-filter: blur(5px);
+    -webkit-box-shadow: 1px 0px 6px 1px rgba(255,255,255,0.95); 
+    box-shadow: 1px 0px 6px 1px rgba(255,255,255,0.95);
     
 }
 
-#doctor{
-    animation: doctor;
-    animation-timing-function: ease-in-out;
-    animation-delay: 1500ms;
-    animation-duration: 1000ms;
-    animation-fill-mode: forwards;
-    
+#txt{
+    width:100%;
+    height:50px;
+
 }
 
-#admin{
-    animation: admin;
-    animation-timing-function: ease-in-out;
-    animation-delay: 2000ms;
-    animation-duration: 1000ms;
-    animation-fill-mode: forwards;
-}
 
-#user{
-    animation: user;
-    animation-timing-function: ease-in-out;
-    animation-delay: 2500ms;
-    animation-duration: 1000ms;
-    animation-fill-mode: forwards;
-}
-
-.btn::before{
-    content:'';
-    position: absolute;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color:#0AF;
-    z-index:-1;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: all 300ms ease-in-out;
-    outline: none;
-}
-
-.btn:hover::before,
-.btn:focus::after{
-    
-    /* border-color: black; */
-   
-    transform: scaleX(1);
-    color:white;
-}
-
-.btn:hover,
-.btn:after{
-    border: none;
-    outline: none;
-    color:white;
-}
 
 .txt-container{
     flex: 1;
@@ -175,24 +120,6 @@
 @keyframes title{
     100%{
         top:0px;
-    }
-}
-
-@keyframes doctor{
-    100%{
-        left: 0px;
-    }
-}
-
-@keyframes admin{
-    100%{
-        left: 0px;
-    }
-}
-
-@keyframes user{
-    100%{
-        left: 0px;
     }
 }
 

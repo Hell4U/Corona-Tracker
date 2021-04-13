@@ -6,12 +6,52 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/admin_login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="img-shadow"></div>
+        <nav>
+            <div class="title">
+                Covid-19 Tracker
+            </div>
+        </nav>
+        
+        <div class="article">
+
+            <div class="box-container">
+                <div class="frm-container">
+                    <div class="form-title">Admin Login</div>
+                    <form action="" method="post">
+                        <input type="text" name="admin_username" placeholder="Enter admin username..." id="txt"><br>               
+                        <input type="password" name="admin_password" id="txt"><br>
+                        <input type="submit" value="Login" name="admin_btn" id="btn">         
+                    </form>
+                </div>
+            </div>
+
+            <div class="txt-container">
+                <p>
+                
+                    <ul>
+                        Guidelines for the protection from Covid-19<br><br>
+                        <li>Maintain at least a 1-metre distance between yourself and others</li>
+                        <li>Make wearing a mask a normal part of being around other people</li>
+                        <li>The appropriate use, storage and cleaning or disposal are essential to make masks as effective as possible.</li>
+                        <li>Avoid the 3Cs: spaces that are closed, crowded or involve close contact.</li>
+                        <li>Avoid crowded or indoor settings</li>
+                    </ul>
+                </p>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
 </html>
