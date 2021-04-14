@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,300&display=swap');
 
 *{
     box-sizing: border-box;
@@ -44,14 +45,6 @@
 
 .title{
     font-size: clamp(40px,5vw,90px);
-    animation-name: title;
-    animation-delay:100ms;
-    animation-duration: 1500ms;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
-    position: relative;
-    top:-150px;
-    bottom: 0;
 }
 
 .article{
@@ -71,50 +64,59 @@
     padding: 0 5%;
 }
 
-.btn-container{
-    display: flex;
-    flex-direction: column;
+.frm-container{
+    /* min-height: 250px;
+    height: auto; */
+    min-width:450px;
+    width: auto;
+    /* border: 2px solid yellow; */
+    padding:10%;
+    background-color:rgba(255, 255, 255, 0.185);
+    backdrop-filter: blur(7px);
+    box-shadow: 0px 0px 3px 0px rgb(255, 255, 255);
+    border-radius:5px;
+    
+}
+
+.frm-title{
+    text-align: center;
+    width: auto;
+    /* border: 2px solid green; */
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+    color:aliceblue;
+    font-family:'Roboto',sans-serif;
+}
+
+form{
+    display: block;
+    margin:0 auto;
+}
+
+#txt{
+    width:100%;
+    height:50px;
+    font-size:20px;
+    border-radius:10px;
+    margin-bottom: 8%;
+    outline: none;
+    border: none;
 }
 
 .btn{
     color:rgb(255, 210, 143);
-    margin-bottom: 15%;
     cursor: pointer;
     font-size: clamp(15px,20px,20px);
     padding:15px;
-    max-width: 100%;
+    width: 100%;
+    letter-spacing:1.2px;
     border-color: #838383;
     background: transparent;
     position: relative;
     transition: all 300ms ease-in-out;
     outline: none;
-    left: -250px;
+    /* left: -250px; */
     
-}
-
-#doctor{
-    animation: doctor;
-    animation-timing-function: ease-in-out;
-    animation-delay: 1500ms;
-    animation-duration: 1000ms;
-    animation-fill-mode: forwards;
-    
-}
-
-#admin{
-    animation: admin;
-    animation-timing-function: ease-in-out;
-    animation-delay: 2000ms;
-    animation-duration: 1000ms;
-    animation-fill-mode: forwards;
-}
-
-#user{
-    animation: user;
-    animation-timing-function: ease-in-out;
-    animation-delay: 2500ms;
-    animation-duration: 1000ms;
-    animation-fill-mode: forwards;
 }
 
 .btn::before{
@@ -136,17 +138,32 @@
 .btn:focus::after{
     
     /* border-color: black; */
-   
+    /* transform: scale(1.1); */
+    
     transform: scaleX(1);
     color:white;
 }
 
 .btn:hover,
 .btn:after{
+    font-size: 20px;
+    letter-spacing:1.4px;
+    transform: scale(1.1);
     border: none;
     outline: none;
     color:white;
 }
+
+.error{
+    /* border: 2px solid magenta; */
+    width: 100%;
+    margin-top: 5%;
+    text-align: center;
+    color:rgb(255, 254, 169);
+    font-size: 26px;
+    font-family: 'Nunito', sans-serif;
+}
+
 
 .txt-container{
     flex: 1;
@@ -163,42 +180,10 @@
 
 .txt-container ul{
     position: relative;
-    right: -1400px;
-    animation: txt-box;
-    animation-timing-function: ease-in-out;
-    animation-delay: 2500ms;
-    animation-duration: 1000ms;
-    animation-fill-mode: forwards;
     padding-left: 5%;
 
 }
 
-@keyframes title{
-    100%{
-        top:0px;
-    }
-}
-
-@keyframes doctor{
-    100%{
-        left: 0px;
-    }
-}
-
-@keyframes admin{
-    100%{
-        left: 0px;
-    }
-}
-
-@keyframes user{
-    100%{
-        left: 0px;
-    }
-}
-
-@keyframes txt-box{
-    100%{
-        right: 0px;
-    }
+.txt-container ul li{
+    list-style-type: disc;
 }

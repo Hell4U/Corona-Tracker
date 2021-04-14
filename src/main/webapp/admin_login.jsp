@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/admin_login.css">
+    <link rel="stylesheet" href="./css/users_login.css">
 </head>
 <body>
     <div class="container">
@@ -27,12 +27,15 @@
 
             <div class="box-container">
                 <div class="frm-container">
-                    <div class="form-title">Admin Login</div>
+                    <div class="frm-title"><h1>Admin Login</h1></div>
                     <form action="" method="post">
                         <input type="text" name="admin_username" placeholder="Enter admin username..." id="txt"><br>               
                         <input type="password" name="admin_password" id="txt"><br>
-                        <input type="submit" value="Login" name="admin_btn" id="btn">         
+                        <button class="btn" name="admin_btn" type="submit">Login</button>        
                     </form>
+                </div>
+                <div class="error">
+                    
                 </div>
             </div>
 
@@ -49,6 +52,8 @@
                     </ul>
                 </p>
             </div>
+
+            
             
         </div>
     </div>
