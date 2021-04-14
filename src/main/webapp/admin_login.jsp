@@ -4,7 +4,10 @@
     Author     : Neel
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>  
+<%@include file="admin_login_checker.jsp" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +38,9 @@
                     </form>
                 </div>
                 <div class="error">
-                    
+                   <%=
+                      err 
+                   %>
                 </div>
             </div>
 

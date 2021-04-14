@@ -7,27 +7,40 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>  
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        
-       <%
-            try{
-                Connection con=null;
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                con=DriverManager.getConnection("jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6405344","sql6405344","kNClFQPRil");
-                Statement st=con.createStatement();
-            }catch (Exception e){ 
-            }
+    pageEncoding="ISO-8859-1"%>        
+       <%!
             
+            String hi="hi";
+            public static class ConnectionUtil{
+                private static ConnectionUtil instance =new ConnectionUtil();
+                public final String driver="com.mysql.cj.jdbc.Driver";
+                public final String url="jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6405344";
+                public final String username="sql6405344";
+                public final String password="kNClFQPRil";
+
+                private ConnectionUtil(){
+                    
+                    try {
+                            Class.forName(driver);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+                }
+
+                public Connection makeConnection(){
+                    Connection con=null;
+                    try {
+                            con=DriverManager.getConnection(url,username,password);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    
+                    return con;
+                }
+
+                public static Connection getConnection() {
+		return instance.makeConnection();
+                }
+            };
             
        %>
-            
-    </body>
-</html>
