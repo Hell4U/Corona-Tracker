@@ -31,6 +31,7 @@
        else{
            err="";
            session.setAttribute("admin", username);
+           session.setMaxInactiveInterval(600);
        }
        
     }
