@@ -1,0 +1,52 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.main-container{
+    background: linear-gradient(0deg, #54eaec, #56e4fe, #6fdcff, #8ed3ff, #adc9ff, #c7c0f8, #d9b7e7, #e4b1d4);
+    min-height: 100vh;
+    height: 100%;
+    min-width: 100vw;
+    width:100%;
+    margin: 0;
+}
+
+nav{
+    /* border:2px solid red; */
+    background-color: #d563f7;
+    width:100%;
+    margin: 0;
+    color:white;
+    font-size: 20px;
+}
+
+.account-info{
+    display: flex;
+    width:15%;
+    /* border:2px solid red; */
+    height: 100%;
+}
+
+nav ul{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5%;
+    margin-bottom: 0;
+    margin-top: 3%;
+}
+
+nav ul li{
+    list-style:none;
+}
+
+nav ul li a{
+    text-decoration: none;
+}
+
+nav ul li a:hover{
+    text-decoration:none;
+    color:white;
+}

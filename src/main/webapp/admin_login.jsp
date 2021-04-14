@@ -7,7 +7,13 @@
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>  
 <%@include file="admin_login_checker.jsp" %>
+<%
 
+    if((session.getAttribute("admin")==null?false:true)){
+           response.sendRedirect("admin_panel.jsp");
+    }
+    
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +38,8 @@
                 <div class="frm-container">
                     <div class="frm-title"><h1>Admin Login</h1></div>
                     <form action="" method="post">
-                        <input type="text" name="admin_username" placeholder="Enter admin username..." id="txt"><br>               
-                        <input type="password" name="admin_password" id="txt"><br>
+                        <input type="text" name="admin_username" placeholder="Enter admin username..." id="txt" required><br>               
+                        <input type="password" name="admin_password" id="txt" required><br>
                         <button class="btn" name="admin_btn" type="submit">Login</button>        
                     </form>
                 </div>

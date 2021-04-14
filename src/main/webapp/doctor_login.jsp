@@ -27,7 +27,7 @@
 
             <div class="box-container">
                 <div class="frm-container">
-                    <div class="frm-title"><h1>Admin Login</h1></div>
+                    <div class="frm-title"><h1>Doctor Login</h1></div>
                     <form action="" method="post">
                         <input type="text" name="doctor_username" placeholder="Enter your username..." id="txt"><br>               
                         <input type="password" name="doctor_password" id="txt"><br>
