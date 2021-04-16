@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>  
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>      
-
+<%@include file="connection.jsp" %>
 <%
     Object tmp=session.getAttribute("admin");
     if(tmp==null){
         response.sendRedirect("admin_login.jsp");
     }
+%>
+
+<%!
+   Connection con=ConnectionUtil.getConnection();
 %>
 
 <html lang="en">
@@ -52,12 +54,123 @@
                 </p>
             </div>
         </div>
-        <div class="container">
-            <div class="col-xl-3">
-                <ul class="list-group">
-                     <a class="list-group-item  text-center text-20" href="admin_panel.jsp"><i class="fas fa-user-plus"></i> Add Doctor</a>
-                     <a class="list-group-item active text-center text-20" href="admin_edit_doctor.jsp"><i class="fas fa-user-edit"></i> Edit Doctor</a>
-                </ul>
+        <div class="container" id="container">
+            <div class="row">
+
+                <div class="col-xl-3">
+                    <ul class="list-group">
+                        <a class="list-group-item  text-center text-20" href="admin_panel.jsp"><i class="fas fa-user-plus"></i> Add Doctor</a>
+                        <a class="list-group-item active text-center text-20" href="admin_edit_doctor.jsp"><i class="fas fa-user-edit"></i> Edit Doctor</a>
+                    </ul>
+                </div>
+                
+                <div class="col-xl-3">
+                    <div class="form-area w-100 text-center">
+                        <h5 class="text-center">Click on Username</h3>
+                        <%
+                            String sql="SELECT * FROM DOCTOR";
+                            Statement st=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+                            
+                            ResultSet rs=st.executeQuery(sql);
+                            
+                            rs.last();
+                            int r=rs.getRow();
+//                            out.println(r);
+                            
+                            if(r>0){
+                                rs=st.executeQuery(sql);
+                                while(rs.next()){
+                                    %>
+                                            <div class="list-group">
+                                                <a class="list-group-item" href="admin_edit_doctor.jsp?update=<%=rs.getString("USERNAME")%>"><%=rs.getString("USERNAME")%></a>
+                                            </div>
+                                    <%
+                                }
+                            }
+                            else{
+                                %>
+                                            <h5 class="bg-warning text-light">No Docotor's Has Been Registered</h5>
+                                <%
+                            }
+                            
+                        %>
+                    </div>
+                </div>
+                    
+                    <%
+                        if("GET".equalsIgnoreCase(request.getMethod()) && request.getParameter("update")!=null){
+                            
+                            String user=request.getParameter("update");
+                            sql="SELECT * FROM DOCTOR WHERE USERNAME=?";
+                            PreparedStatement pstm=con.prepareCall(sql);
+                            
+                            pstm.setString(1, user);
+                            
+                            rs=pstm.executeQuery();
+                            rs.next();
+                            
+                            %>
+                            <div class="col-xl-6">
+                                    <form class="form-area" method="POST" action="">
+                                    <h4 class="text-center">Edit Information</h4>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Username</span>
+                                        </div>
+                                        <input type="text" class="form-control" disabled value="<%= rs.getString("USERNAME")%>">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Name</span>
+                                        </div>
+                                        <input type="text" class="form-control" disabled value="<%= rs.getString("NAME")%>">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Address</span>
+                                        </div>
+                                        <textarea class="form-control"><%= rs.getString("ADDRESS")%></textarea>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Hospital</span>
+                                        </div>
+                                        <input type="text" class="form-control"  placeholder="<%= rs.getString("HOSPITAL")%>">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">City</span>
+                                        </div>
+                                        <input type="text" class="form-control" disabled value="<%= rs.getString("CITY")%>">
+                                    </div>
+                                    
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                              <input type="checkbox" <%
+                                                                            if("ENABLE".equals(rs.getString("RIGHTS")))
+                                                                                out.println("CHECKED");
+                                                                      %>>
+                                            </div>
+                                         </div>
+                                        <input type="text" class="form-control" disabled value="Select if you want to enable or diable the doctor">
+                                    </div>
+                                    
+                                    <div class="input-group justify-content-end">
+                                        <button class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                                
+                            <%
+                        }
+                    %>
+                                
+                
             </div>
         </div>
         
