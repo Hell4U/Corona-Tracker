@@ -81,8 +81,8 @@
                             
                                 int cnt=0;
                                 
-                                String sql="SELECT * FROM DOCTOR where OPTION=ENABLE";
-                                Statement st=con.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
+                                String sql="SELECT * FROM DOCTOR where RIGHTS='ENABLE'";
+                                Statement st=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
                                 ResultSet rs=st.executeQuery(sql);
                                 
                                 rs.last();
