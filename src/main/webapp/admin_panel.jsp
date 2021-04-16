@@ -65,6 +65,7 @@
                     <ul class="list-group">
                         <a class="list-group-item active text-center text-20" href="admin_panel.jsp"><i class="fas fa-user-plus"></i> Add Doctor</a>
                         <a class="list-group-item  text-center text-20" href="admin_edit_doctor.jsp"><i class="fas fa-user-edit"></i> Edit Doctor</a>
+                         <a class="list-group-item text-center text-20" href="admin_view_doctor.jsp"><i class="fas fa-user"></i> View Doctor Details</a>
                     </ul>
                 </div>
 

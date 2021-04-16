@@ -7,5 +7,5 @@
 <%
     HttpSession sd=request.getSession(false);
     sd.invalidate();
-    response.sendRedirect("admin_login.jsp");
+    response.sendRedirect("index.html");
 %>
