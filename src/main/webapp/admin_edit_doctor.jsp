@@ -13,8 +13,42 @@
    Connection con=ConnectionUtil.getConnection();
 %>
 
+<%
+    String users;
+    users=(String)application.getAttribute("username");
+%>
 
-
+<%
+    if("POST".equalsIgnoreCase(request.getMethod()) && request.getParameter("update")!=null){
+        String username=request.getParameter("username");
+        String address=request.getParameter("address");
+        String hospital=request.getParameter("hospital");
+        String check=request.getParameter("enable");
+        
+        //out.println(check);
+        
+        if(check!=null)
+            check="ENABLE";
+        else
+            check="DISABLE";
+        
+//        out.println(username);
+            
+        String sql="UPDATE DOCTOR SET ADDRESS=? , HOSPITAL=? , RIGHTS=? WHERE USERNAME=?";
+        
+        PreparedStatement pstm=con.prepareCall(sql);
+        
+        pstm.setString(1, address);
+        pstm.setString(2, hospital);
+        pstm.setString(3, check);
+        pstm.setString(4, username);
+        
+       int r=pstm.executeUpdate();
+       
+       out.println("<script>alert('Data Has Been Updated')</script>");
+       
+    }
+%>
 
 <html lang="en">
 <head>
@@ -33,7 +67,7 @@
 
                 <div class="account-info">
                     <ul>
-                        <li> <i class="fas fa-user-cog"></i> Hi,there</li>
+                        <li> <i class="fas fa-user-cog"></i> Hi,<%=users%></li>
                         <li><a href="admin_logout.jsp">Logout</a></li>
                     </ul>
                 </div>
@@ -121,7 +155,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Username</span>
                                         </div>
-                                        <input type="text" class="form-control" name="username" disabled value="<%= rs.getString("USERNAME")%>" >
+                                        <input type="text" class="form-control" disabled value="<%= rs.getString("USERNAME")%>" >
                                     </div>
 
                                     <div class="input-group">
@@ -163,7 +197,7 @@
                                          </div>
                                         <input type="text" class="form-control" disabled value="Select if you want to enable or disable the doctor">
                                     </div>
-                                    
+                                    <input type="hidden" value="<%=rs.getString("USERNAME")%>" name="username">
                                     <div class="input-group justify-content-end">
                                         <button class="btn btn-primary" name="update" type="submit">Update</button>
                                     </div>

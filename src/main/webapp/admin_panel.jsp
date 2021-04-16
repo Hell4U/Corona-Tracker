@@ -13,7 +13,7 @@
 
 <%
     String user;
-    user=request.getParameter("admin_username");
+    user=(String)application.getAttribute("username");
 %>
 
 
