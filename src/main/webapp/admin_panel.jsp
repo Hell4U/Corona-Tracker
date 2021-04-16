@@ -11,6 +11,12 @@
     }
 %>
 
+<%
+    String user;
+    user=request.getParameter("admin_username");
+%>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +34,7 @@
 
                 <div class="account-info">
                     <ul>
-                        <li> <i class="fas fa-user-cog"></i> Hi,there</li>
+                        <li> <i class="fas fa-user-cog"></i> Hi,<%=user%></li>
                         <li><a href="admin_logout.jsp">Logout</a></li>
                     </ul>
                 </div>
@@ -63,45 +69,45 @@
                 </div>
 
                 <div class="col-xl-9">
-                    <form action="" method="post" class="form-area">
+                    <form action="admin_add_doctor.jsp" method="post" class="form-area">
                         <h3 class="text-center text-dark">Add Doctor</h3>
                         
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text text-dark">Username</span>
                             </div>
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control" name="username" required>
                         </div>
 
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text text-dark">Name</span>
                             </div>
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control" name="name" required>
                         </div>
 
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text text-dark">Address</span>
                             </div>
-                            <textarea class="form-control"></textarea>
+                            <textarea class="form-control" name="address" required></textarea>
                         </div>
 
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text text-dark">Hospital</span>
                             </div>
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control" name="hospital" required>
                         </div>
 
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text text-dark">City</span>
                             </div>
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control" name="city" required>
                         </div>
 
-                        <div class="input-group justify-content-end"><button class="btn btn-primary ">Register</button></div>
+                        <div class="input-group justify-content-end"><button class="btn btn-primary " type="submit">Register</button></div>
                         
                     </form>
                 </div>

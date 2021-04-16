@@ -10,7 +10,11 @@
 <%
 
     if((session.getAttribute("admin")==null?false:true)){
+               
+           RequestDispatcher rd=request.getRequestDispatcher("admin_panel.jsp");
+           rd.forward(request, response);
            response.sendRedirect("admin_panel.jsp");
+           
     }
     
 %>
