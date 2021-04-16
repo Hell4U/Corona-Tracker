@@ -61,6 +61,7 @@
                     <ul class="list-group">
                         <a class="list-group-item  text-center text-20" href="admin_panel.jsp"><i class="fas fa-user-plus"></i> Add Doctor</a>
                         <a class="list-group-item active text-center text-20" href="admin_edit_doctor.jsp"><i class="fas fa-user-edit"></i> Edit Doctor</a>
+                        <a class="list-group-item text-center text-20" href="admin_view_doctor.jsp"><i class="fas fa-user"></i> View Doctor Details</a>
                     </ul>
                 </div>
                 
@@ -117,7 +118,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Username</span>
                                         </div>
-                                        <input type="text" class="form-control" disabled value="<%= rs.getString("USERNAME")%>">
+                                        <input type="text" class="form-control" disabled value="<%= rs.getString("USERNAME")%>" >
                                     </div>
 
                                     <div class="input-group">
@@ -131,14 +132,14 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Address</span>
                                         </div>
-                                        <textarea class="form-control"><%= rs.getString("ADDRESS")%></textarea>
+                                        <textarea class="form-control" required=""><%= rs.getString("ADDRESS")%></textarea>
                                     </div>
 
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Hospital</span>
                                         </div>
-                                        <input type="text" class="form-control"  placeholder="<%= rs.getString("HOSPITAL")%>">
+                                        <input type="text" class="form-control"  value="<%= rs.getString("HOSPITAL")%>" required>
                                     </div>
 
                                     <div class="input-group">
@@ -157,7 +158,7 @@
                                                                       %>>
                                             </div>
                                          </div>
-                                        <input type="text" class="form-control" disabled value="Select if you want to enable or diable the doctor">
+                                        <input type="text" class="form-control" disabled value="Select if you want to enable or disable the doctor">
                                     </div>
                                     
                                     <div class="input-group justify-content-end">
