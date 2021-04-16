@@ -13,6 +13,9 @@
    Connection con=ConnectionUtil.getConnection();
 %>
 
+
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -112,34 +115,34 @@
                             
                             %>
                             <div class="col-xl-6">
-                                    <form class="form-area" method="POST" action="">
+                                    <form class="form-area" method="POST" action="admin_edit_doctor.jsp">
                                     <h4 class="text-center">Edit Information</h4>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Username</span>
                                         </div>
-                                        <input type="text" class="form-control" disabled value="<%= rs.getString("USERNAME")%>" >
+                                        <input type="text" class="form-control" name="username" disabled value="<%= rs.getString("USERNAME")%>" >
                                     </div>
 
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Name</span>
                                         </div>
-                                        <input type="text" class="form-control" disabled value="<%= rs.getString("NAME")%>">
+                                        <input type="text" class="form-control"  disabled value="<%= rs.getString("NAME")%>">
                                     </div>
 
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Address</span>
                                         </div>
-                                        <textarea class="form-control" required=""><%= rs.getString("ADDRESS")%></textarea>
+                                        <textarea class="form-control" name="address" required=""><%= rs.getString("ADDRESS")%></textarea>
                                     </div>
 
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Hospital</span>
                                         </div>
-                                        <input type="text" class="form-control"  value="<%= rs.getString("HOSPITAL")%>" required>
+                                        <input type="text" class="form-control" name="hospital" value="<%= rs.getString("HOSPITAL")%>" required>
                                     </div>
 
                                     <div class="input-group">
@@ -152,7 +155,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                              <input type="checkbox" <%
+                                              <input type="checkbox" name="enable" <%
                                                                             if("ENABLE".equals(rs.getString("RIGHTS")))
                                                                                 out.println("CHECKED");
                                                                       %>>
@@ -162,7 +165,7 @@
                                     </div>
                                     
                                     <div class="input-group justify-content-end">
-                                        <button class="btn btn-primary">Update</button>
+                                        <button class="btn btn-primary" name="update" type="submit">Update</button>
                                     </div>
                                 </form>
                             </div>
