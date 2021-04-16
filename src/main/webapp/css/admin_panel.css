@@ -20,6 +20,7 @@ nav{
     margin: 0;
     color:white;
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .account-info{
@@ -36,6 +37,7 @@ nav ul{
     margin-right: 5%;
     margin-bottom: 0;
     margin-top: 3%;
+    flex-wrap: wrap;
 }
 
 nav ul li{
@@ -49,4 +51,35 @@ nav ul li a{
 nav ul li a:hover{
     text-decoration:none;
     color:white;
+}
+
+.container{
+    /* border:2px solid black; */
+}
+
+#jumbo{
+    padding: 1rem 0;
+    background-color: hsl(273, 50%, 79%);
+}
+
+.list-group a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#container{
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.151);
+    backdrop-filter: blur(8px);
+    border: 1px solid white;
+}
+
+.form-area{
+    background-color:rgba(255, 255, 255, 0.336);
+    border:1px solid black;
+    padding: 0.5rem;
+}
+
+.input-group{
+    margin-bottom:.5rem !important;
 }

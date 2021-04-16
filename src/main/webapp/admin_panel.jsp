@@ -33,6 +33,81 @@
                     </ul>
                 </div>
         </nav>
+
+        <%-- <div class="container">
+            <div class="col-xl-3">
+                <ul class="list-group">
+                    <a class="list-group-item active" href="admin_panel.jsp"> <i class="fa fa-user-plus"> Add Doctor</i></li>
+                </ul>
+            </div>
+        </div> --%>
+        <div class="jumbotron jumbotron-fluid" id="jumbo">
+            <div class="container text-center">
+                <h3 class="display-6 text-primary"> Welcome Admin</h3>
+                <p class="lead">
+                    <ul>
+                        <li>You can add doctor.</li>
+                        <li>You can edit or disable doctor.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="container" id="container">
+            <div class="row">
+
+                <div class="col-xl-3">
+                    <ul class="list-group">
+                        <a class="list-group-item active text-center text-20" href="admin_panel.jsp"><i class="fas fa-user-plus"></i> Add Doctor</a>
+                        <a class="list-group-item  text-center text-20" href="admin_edit_doctor.jsp"><i class="fas fa-user-edit"></i> Edit Doctor</a>
+                    </ul>
+                </div>
+
+                <div class="col-xl-9">
+                    <form action="" method="post" class="form-area">
+                        <h3 class="text-center text-dark">Add Doctor</h3>
+                        
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text text-dark">Username</span>
+                            </div>
+                            <input type="text" class="form-control" >
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text text-dark">Name</span>
+                            </div>
+                            <input type="text" class="form-control" >
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text text-dark">Address</span>
+                            </div>
+                            <textarea class="form-control"></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text text-dark">Hospital</span>
+                            </div>
+                            <input type="text" class="form-control" >
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text text-dark">City</span>
+                            </div>
+                            <input type="text" class="form-control" >
+                        </div>
+
+                        <div class="input-group justify-content-end"><button class="btn btn-primary ">Register</button></div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
