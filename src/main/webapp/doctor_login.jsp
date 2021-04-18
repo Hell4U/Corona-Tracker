@@ -18,9 +18,11 @@
     <div class="container">
         <div class="img-shadow"></div>
         <nav>
-            <div class="title">
-                Covid-19 Tracker
-            </div>
+             <a href="index.html">
+                <div class="title">
+                    Covid-19 Tracker
+                </div>
+            </a>
         </nav>
         
         <div class="article">

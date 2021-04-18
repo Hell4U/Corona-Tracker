@@ -92,10 +92,11 @@
                                 }
                                 else{
                                     %>
-                                            <table class="table table-bordered">
+                                    <div class="table-responsive">
+                                            <table class="table table-bordered text-left">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <td></td>
+                                                        <td>#</td>
                                                         <td>No.</td>
                                                         <td>Username</td>
                                                         <td>Name</td>
@@ -125,6 +126,7 @@
                                     %>
                                             </tbody>
                                                 </table>
+                                            </div>
                                                 <%
                                 }
                             %>
