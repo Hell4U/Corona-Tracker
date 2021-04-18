@@ -7,5 +7,6 @@
 <%
     HttpSession sd=request.getSession(false);
     sd.invalidate();
+    application.removeAttribute("username");
     response.sendRedirect("index.html");
 %>
