@@ -1,6 +1,8 @@
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>  
 <%@include file="connection.jsp" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%!
     Connection con=ConnectionUtil.getConnection();
 %>
@@ -38,3 +40,5 @@
        
     }
 %>
+
+<c:out value="${param.admin_username}"/>
