@@ -41,4 +41,3 @@
     }
 %>
 
-<c:out value="${param.admin_username}"/>

@@ -8,8 +8,8 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>        
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver" scope="application" url="jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6405344" user="sql6405344" password="kNClFQPRil"/>
+
+
        
 <%!
             

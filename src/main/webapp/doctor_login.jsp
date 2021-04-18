@@ -4,8 +4,7 @@
     Author     : Neel
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="doctor_login_checker.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,11 +33,11 @@
                     <form action="" method="post">
                         <input type="text" name="doctor_username" placeholder="Enter your username..." id="txt"><br>               
                         <input type="password" name="doctor_password" id="txt"><br>
-                        <button class="btn" name="doctor_btn" type="submit">Login</button>        
+                        <button class="btn" name="doctor_btn" type="submit" value="login">Login</button>        
                     </form>
                 </div>
                 <div class="error">
-                    
+                    <%=err%>
                 </div>
             </div>
 
