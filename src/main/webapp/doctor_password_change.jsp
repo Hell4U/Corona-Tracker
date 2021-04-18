@@ -3,6 +3,9 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>  
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>      
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <%
     Object tmp=session.getAttribute("username");
@@ -56,6 +59,35 @@
                 </p>
             </div>
         </div>
+     
+            
+            
+            <c:if test="${param.change!=null}">
+                <c:choose>
+                    <c:when test="${param.password eq param.npassword}">
+                        <sql:update var="ru" dataSource="${db}">
+                            UPDATE PASSWORDCHANGE SET CHANGED = 'YES'
+                            WHERE USERNAME = ?
+                            <sql:param value="<%=user%>"/>
+                        </sql:update>
+                            <c:redirect  url="doctor_panel.jsp">
+                                <c:param name="username" value="${param.username}">
+                                    
+                                </c:param>
+                            </c:redirect>
+                    </c:when>
+                    
+                    <c:otherwise>
+                        <div class="container bg-danger p-2 text-center text-light justify-content-between">
+                            <p style="font-size:20px">Password not match!</p>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
+            
+            
+            
+        
         <div class="container" id="container">
             <div class="row">
 
@@ -84,7 +116,7 @@
                         </div>
                        
 
-                        <div class="input-group justify-content-end"><button class="btn btn-primary " type="submit" name="change">Change</button></div>
+                        <div class="input-group justify-content-end"><button class="btn btn-primary " type="submit" value="change" name="change">Change</button></div>
                         
                     </form>
                 </div>

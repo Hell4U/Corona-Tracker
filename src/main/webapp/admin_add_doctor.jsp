@@ -12,6 +12,7 @@
     String city;
     String sql;
     Connection con=ConnectionUtil.getConnection();
+    String sql2;
 %>
 
 <%-- 
@@ -50,6 +51,7 @@
 --%>
 <%
     sql="INSERT INTO DOCTOR(USERNAME,PASSWORD,NAME,ADDRESS,HOSPITAL,CITY) VALUES(?,?,?,?,?,?)";
+    
 %>
 
 <%--
@@ -70,6 +72,7 @@ making prepared call
     pstm.setString(4, address);
     pstm.setString(5, hospital);
     pstm.setString(6, city);
+    
 %>
 
 <%-- 
@@ -80,6 +83,13 @@ making prepared call
                  int change=pstm.executeUpdate();
   
   if(change>0){
+      
+            sql="INSERT INTO PASSWORDCHANGE(USERNAME,PASSWORD) VALUES (?,?)";
+            pstm=con.prepareCall(sql);
+            pstm.setString(1, username);
+             pstm.setString(2, password);
+             int k=pstm.executeUpdate();
+            
       %>
       <script>
           alert("DATA HAS BEEN ADDEDD SUCCESSFULLY.");
