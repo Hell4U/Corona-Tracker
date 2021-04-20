@@ -10,16 +10,18 @@
 %>
 
 <%!
-   Connection con=ConnectionUtil.getConnection();
+  
 %>
 
 <%
+    Connection con=ConnectionUtil.getConnection();
     String users;
     users=(String)application.getAttribute("username");
 %>
 
 <%
     if("POST".equalsIgnoreCase(request.getMethod()) && request.getParameter("update")!=null){
+         
         String username=request.getParameter("username");
         String address=request.getParameter("address");
         String hospital=request.getParameter("hospital");

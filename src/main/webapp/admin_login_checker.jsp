@@ -4,7 +4,7 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%!
-    Connection con=ConnectionUtil.getConnection();
+    
 %>
 
 <%!
@@ -14,7 +14,7 @@
 <%
     if((request.getParameter("admin_btn")==null?false:true)){
 //        out.println("done");
-
+        Connection con=ConnectionUtil.getConnection();
         String username=request.getParameter("admin_username");
         String password=request.getParameter("admin_password");
  //       out.println(username+"\n"+password);

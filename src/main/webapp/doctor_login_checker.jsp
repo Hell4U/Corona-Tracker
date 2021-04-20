@@ -21,20 +21,37 @@
                          <%
                              err="";
                          %>
+                         <sql:query var="auth" dataSource="${db}">
+                             SELECT count(*) as cnt FROM PASSWORDCHANGE WHERE USERNAME=? AND PASSWORD=?
+                             <sql:param value="${param.doctor_username}"/>
+                             <sql:param value="${param.doctor_password}"/>
+                         </sql:query>
+                             
+                             <c:forEach var="authd" items="${auth.rows}">
+                                 <c:if test="${authd.cnt le 0}">
+                                     <%
+                                         err="Wrong Username or Password";
+                                         response.sendRedirect("doctor_login.jsp");
+                                     %>
+                                 </c:if>
+                                 
+                             </c:forEach>
                          
                          <sql:query var="rw2" dataSource="${db}">
-                             SELECT * FROM PASSWORDCHANGE WHERE USERNAME=?
+                             SELECT * FROM PASSWORDCHANGE WHERE USERNAME=? AND PASSWORD=?
                              <sql:param value="${param.doctor_username}"/>
+                             <sql:param value="${param.doctor_password}"/>
                          </sql:query>
                              
                              <c:forEach var="rd2" items="${rw2.rows}">
-                                 <%
-                                        session.setAttribute("username", request.getParameter("doctor_username"));
-                                        application.setAttribute("username",request.getParameter("doctor_username"));
-                                    %>
+                                    
                                  <c:choose>
                                     
                                      <c:when test="${rd2.CHANGED eq 'NO'}">
+                                         <%
+                                             session.setAttribute("username_pass_change","password_change");
+                                             application.setAttribute("username", request.getParameter("doctor_username"));
+                                         %>
                                          <c:redirect url="doctor_password_change.jsp">
                                              <c:param name="username" value="${rd2.USERNAME}">
                                                  

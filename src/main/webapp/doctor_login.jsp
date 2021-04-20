@@ -3,8 +3,18 @@
     Created on : Apr 13, 2021, 1:14:26 PM
     Author     : Neel
 --%>
-
+<%
+    if(session.getAttribute("username")!=null){
+        response.sendRedirect("doctor_panel.jsp");
+    }
+%>
 <%@include file="doctor_login_checker.jsp" %>
+
+<%
+    if(session.getAttribute("username_pass_change")!=null){
+        response.sendRedirect("doctor_password_change.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

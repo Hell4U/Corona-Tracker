@@ -8,7 +8,7 @@
 
 
 <%
-    Object tmp=session.getAttribute("username");
+    Object tmp=session.getAttribute("username_pass_change");
     if(tmp==null){
         response.sendRedirect("doctor_login.jsp");
     }
@@ -65,11 +65,26 @@
             <c:if test="${param.change!=null}">
                 <c:choose>
                     <c:when test="${param.password eq param.npassword}">
-                        <sql:update var="ru" dataSource="${db}">
-                            UPDATE PASSWORDCHANGE SET CHANGED = 'YES'
+                        <sql:transaction dataSource="${db}">
+                            <sql:update var="ru">
+                            UPDATE PASSWORDCHANGE SET CHANGED = 'YES', PASSWORD='${param.password}'
                             WHERE USERNAME = ?
                             <sql:param value="<%=user%>"/>
-                        </sql:update>
+                            </sql:update>
+                            
+                            <sql:update var="ru">
+                            UPDATE DOCTOR SET PASSWORD='${param.password}'
+                            WHERE USERNAME = ?
+                            <sql:param value="<%=user%>"/>
+                            </sql:update>
+                            
+                        </sql:transaction>
+                            
+                                    <%
+                                        session.removeAttribute("username_pass_change");
+                                        session.setAttribute("username",user);
+                                        application.setAttribute("username",user);
+                                    %>
                             <c:redirect  url="doctor_panel.jsp">
                                 <c:param name="username" value="${param.username}">
                                     

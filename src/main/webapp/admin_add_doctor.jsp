@@ -11,7 +11,7 @@
     String hospital;
     String city;
     String sql;
-    Connection con=ConnectionUtil.getConnection();
+
     String sql2;
 %>
 
@@ -31,6 +31,7 @@
    Checking if data already exsist or not
 --%>
 <%
+        Connection con=ConnectionUtil.getConnection();
     sql="SELECT * FROM DOCTOR WHERE USERNAME='"+username+"'";
     Statement st=con.createStatement();
     ResultSet rs=st.executeQuery(sql);
