@@ -5,8 +5,7 @@
     pageEncoding="ISO-8859-1"%>        
 
 <%
-    HttpSession sd=request.getSession(false);
-    sd.invalidate();
+    session.invalidate();
     application.removeAttribute("username");
     response.sendRedirect("index.html");
 %>

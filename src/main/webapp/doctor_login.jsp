@@ -4,7 +4,7 @@
     Author     : Neel
 --%>
 <%
-    if(session.getAttribute("username")!=null){
+    if(session.getAttribute("doctor_username")!=null){
         response.sendRedirect("doctor_panel.jsp");
     }
 %>

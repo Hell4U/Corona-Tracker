@@ -6,8 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    HttpSession sd=request.getSession(false);
-    sd.invalidate();
-    application.removeAttribute("username");
+    session.invalidate();
+    application.removeAttribute("doctor_username");
     response.sendRedirect("index.html");
 %>

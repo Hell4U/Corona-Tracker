@@ -30,7 +30,7 @@
                              <c:forEach var="authd" items="${auth.rows}">
                                  <c:if test="${authd.cnt le 0}">
                                      <%
-                                         err="Wrong Username or Password";
+                                         err="Wrong Password";
                                          response.sendRedirect("doctor_login.jsp");
                                      %>
                                  </c:if>
@@ -50,7 +50,7 @@
                                      <c:when test="${rd2.CHANGED eq 'NO'}">
                                          <%
                                              session.setAttribute("username_pass_change","password_change");
-                                             application.setAttribute("username", request.getParameter("doctor_username"));
+                                             application.setAttribute("doctor_username", request.getParameter("doctor_username"));
                                          %>
                                          <c:redirect url="doctor_password_change.jsp">
                                              <c:param name="username" value="${rd2.USERNAME}">
@@ -59,6 +59,10 @@
                                          </c:redirect>
                                      </c:when>
                                      <c:otherwise>
+                                         <%
+                                             session.setAttribute("doctor_username",request.getParameter("doctor_username"));
+                                             application.setAttribute("doctor_username", request.getParameter("doctor_username"));
+                                         %>
                                          <c:redirect url="doctor_panel.jsp">
                                              <c:param name="username" value="${rd2.USERNAME}">
                                                  

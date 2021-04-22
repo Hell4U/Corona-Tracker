@@ -70,7 +70,7 @@
                 <div class="account-info">
                     <ul>
                         <li> <i class="fas fa-user-cog"></i> Hi,<%=users%></li>
-                        <li><a href="admin_logout.jsp">Logout</a></li>
+                        <li><a href="admin_logout.jsp"><i class="fa fa-sign-out"></i>Logout</a></li>
                     </ul>
                 </div>
         </nav>
@@ -98,7 +98,7 @@
 
                 <div class="col-xl-3">
                     <ul class="list-group">
-                        <a class="list-group-item  text-center text-20" href="admin_panel.jsp"><i class="fas fa-user-plus"></i> Add Doctor</a>
+                        <a class="list-group-item  text-center text-20" href="admin_panel.jsp"><i class="fas fa-user-md"></i></i> Add Doctor</a>
                         <a class="list-group-item active text-center text-20" href="admin_edit_doctor.jsp"><i class="fas fa-user-edit"></i> Edit Doctor</a>
                         <a class="list-group-item text-center text-20" href="admin_view_doctor.jsp"><i class="fas fa-user"></i> View Doctor Details</a>
                     </ul>
