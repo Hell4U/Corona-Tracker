@@ -292,15 +292,15 @@
                     text: "Recovered in India"
             },
             axisX: {
-                    title: "Fiscal Year"
+                    title: "Recovered"
             },
             axisY: {
-                    title: "Production ( in million tonnes )",
+                    title: "Recovered",
                     includeZero: true
             },
             data: [{
                     type: "line",
-                    yValueFormatString: "#,##0mn tonnes",
+                    yValueFormatString: "#,##Recovered",
                     dataPoints : <%out.print(dataPoints);%>
             }]
             });
@@ -310,18 +310,18 @@
             var chart1 = new CanvasJS.Chart("chartContainer1", {
             theme: "light2",
             title: {
-                    text: "Positive in India"
+                    text: "Active in India"
             },
             axisX: {
-                    title: "Fiscal Year"
+                    title: "Active Cases"
             },
             axisY: {
-                    title: "Production ( in million tonnes )",
+                    title: "Active Cases",
                     includeZero: true
             },
             data: [{
                     type: "line",
-                    yValueFormatString: "#,##0mn tonnes",
+                    yValueFormatString: "#,##Active",
                     dataPoints : <%out.print(dataPoints1);%>
             }]
             });
@@ -334,15 +334,15 @@
                     text: "Deaths in India"
             },
             axisX: {
-                    title: "Fiscal Year"
+                    title: "Deaths"
             },
             axisY: {
-                    title: "Production ( in million tonnes )",
+                    title: "Deaths",
                     includeZero: true
             },
             data: [{
                     type: "line",
-                    yValueFormatString: "#,##0mn tonnes",
+                    yValueFormatString: "#,##Death",
                     dataPoints : <%out.print(dataPoints2);%>
             }]
             });
