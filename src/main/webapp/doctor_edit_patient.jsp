@@ -5,7 +5,10 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <%
     if(session.getAttribute("doctor_username")==null)
@@ -28,6 +31,16 @@
     <link rel="stylesheet" href="./css/admin_panel.css">
 </head>
 <body>
+    <c:out value="${param.update}"/>
+<c:if test="${param.update eq 'change'}">
+    <c:out value="hi"/>
+    <c:out value="${param.uphone}"/>
+    <c:out value="${param.uname}"/>
+         <%
+             String k=request.getParameter("uphone");
+         %>
+         <%=k%>
+</c:if>
     <div class="main-container ">
         <nav class="nav  justify-content-between navbar-expand-xl">
             <div class="navbar-brand" style="font-size: 20px;">Doctor Panel</div>
@@ -70,29 +83,92 @@
                     </ul>
                 </div>
 
-                <div class="col-xl-9">
-                    <form action="doctor_password_change.jsp" method="post" class="form-area">
-                        <h3 class="text-center text-dark">New Password</h3>
+                <div class="col-xl-3">
+                    <div class="form-area text-center">
+                        <p class="h5">Select your patient</p>
+                            <sql:query var="knt" dataSource="${db}">
+                                SELECT count(*) as cnt FROM PATIENT WHERE DUSERNAME='${username}'
+                            </sql:query>
+                                
+                                <c:choose >
+                                    <c:when test="${knt.rows[0].cnt le 0}">
+                                        <p class="alert alert-warning"><strong>ALERT!</strong>First add your patient.</p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <sql:query var="rws" dataSource="${db}">
+                                            SELECT * FROM PATIENT WHERE DUSERNAME='${username}'
+                                        </sql:query>
+                                        
+                                            <c:forEach var="rds" items="${rws.rows}">
+                                                <div class="list-group">
+                                                    <a class="list-group-item" href="doctor_edit_patient.jsp?edit=<c:out value="${rds.PHONE}"/>">${rds.NAME} ${rds.PHONE}</a>
+                                                </div>
+                                            </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
                         
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text text-dark">New Password</span>
-                            </div>
-                            <input type="password" class="form-control" name="password" required>
-                        </div>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text text-dark">Retype Password</span>
-                            </div>
-                            <input type="password" class="form-control" name="npassword" required>
-                        </div>
-                       
-
-                        <div class="input-group justify-content-end"><button class="btn btn-primary " type="submit" value="change" name="change">Change</button></div>
-                        
-                    </form>
+                    </div>
                 </div>
+                
+                <c:if test="${param.edit!=null}"> 
+                    <div class="col-xl-6">
+                        <form class="form-area text-center" action="doctor_edit_patient.jsp" method="GET">
+                            <h4>Edit Info</h4>
+                                <sql:query var="erws" dataSource="${db}">
+                                            SELECT * FROM PATIENT WHERE PHONE='${param.edit}'
+                                </sql:query>
+                                            
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's Mobile Number</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="uphone" value="${erws.rows[0].PHONE}" disabled>
+                                </div>
+                                            
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's Name</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="uname" value="${erws.rows[0].NAME}" disabled>
+                                </div>
+                                            
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's Address</span>
+                                    </div>
+                                    <textarea class="form-control" name="uaddress" required>${erws.rows[0].ADDRESS}</textarea>
+                                </div>
+                                            
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's Status</span>
+                                    </div>
+                                    <select class="form-control" id="sel1" name="ustatus" required>
+                                        <option value="Healthy">Healthy</option>
+                                        <option value="Recovered">Recovered</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Dead">Dead</option>
+                                    </select>
+                                </div>
+                                            
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's Medicine</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="umedicine" required value="${erws.rows[0].MEDICINE}">
+                                </div>
+                                
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's City</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="ucity" value="${erws.rows[0].CITY}" disabled>
+                                </div>
+                                
+                                 <div class="input-group justify-content-end"><button class="btn btn-primary " type="submit" value="change" name="update">Update</button></div>
+                        </form>
+                    </div>
+                </c:if>
             </div>
         </div>
         
