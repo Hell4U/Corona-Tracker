@@ -8,6 +8,19 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<c:if test="${param.update eq 'change'}">
+    <%
+        String phone=request.getParameter("upd-phone");
+        String address=request.getParameter("upd-address");
+        String status=request.getParameter("upd-status");
+        String medicine=request.getParameter("upd-medicine");
+    %>
+    
+    <sql:update  dataSource="${db}">
+        UPDATE PATIENT SET ADDRESS='<%=address%>', STATUS='<%=status%>', MEDICINE='<%=medicine%>' WHERE PHONE='<%=phone%>'
+    </sql:update>
+         <c:set var="succ" value="Data has been updated."/>
+</c:if>
 
 <!DOCTYPE html>
 <%
@@ -31,16 +44,6 @@
     <link rel="stylesheet" href="./css/admin_panel.css">
 </head>
 <body>
-    <c:out value="${param.update}"/>
-<c:if test="${param.update eq 'change'}">
-    <c:out value="hi"/>
-    <c:out value="${param.uphone}"/>
-    <c:out value="${param.uname}"/>
-         <%
-             String k=request.getParameter("uphone");
-         %>
-         <%=k%>
-</c:if>
     <div class="main-container ">
         <nav class="nav  justify-content-between navbar-expand-xl">
             <div class="navbar-brand" style="font-size: 20px;">Doctor Panel</div>
@@ -72,8 +75,23 @@
                 <p class="text-danger">NOTE:-THIS CAN BE DONE IF YOU ARE ENABLED BY ADMIN.</p>
             </div>
         </div>
-     
-        <div class="container" id="container">
+        
+        <c:choose>
+            <c:when test="${access eq 'DISABLE'}">
+                <div class="container p-4" role="alert">
+                    <div class="alert alert-warning align-item-ceneter justify-content-center display-4" role="alert">
+                        <strong>WARNING!</strong> You do not have enough rights to do anything.Please contact administrator as soon as possible.
+                    </div>
+                </div>
+            </c:when>
+            
+            <c:otherwise>                
+                <c:if test="${not empty succ}">
+                    <div class="container text-center alert alert-success" role="alert">
+                        <strong>UPDATED!</strong> ${succ}
+                    </div>
+                </c:if>
+                <div class="container" id="container">
             <div class="row">
 
                 <div class="col-xl-3">
@@ -122,55 +140,58 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text text-dark">Patient's Mobile Number</span>
                                     </div>
-                                    <input type="text" class="form-control" name="uphone" value="${erws.rows[0].PHONE}" disabled>
+                                    <input type="text" class="form-control" value="${erws.rows[0].PHONE}" disabled>
                                 </div>
                                             
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text text-dark">Patient's Name</span>
                                     </div>
-                                    <input type="text" class="form-control" name="uname" value="${erws.rows[0].NAME}" disabled>
+                                    <input type="text" class="form-control" value="${erws.rows[0].NAME}" disabled>
                                 </div>
                                             
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text text-dark">Patient's Address</span>
                                     </div>
-                                    <textarea class="form-control" name="uaddress" required>${erws.rows[0].ADDRESS}</textarea>
+                                    <textarea class="form-control" name="upd-address" required>${erws.rows[0].ADDRESS}</textarea>
                                 </div>
                                             
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text text-dark">Patient's Status</span>
                                     </div>
-                                    <select class="form-control" id="sel1" name="ustatus" required>
+                                    <select class="form-control" id="sel1" name="upd-status" required>
                                         <option value="Healthy">Healthy</option>
                                         <option value="Recovered">Recovered</option>
                                         <option value="Positive">Positive</option>
                                         <option value="Dead">Dead</option>
                                     </select>
                                 </div>
-                                            
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text text-dark">Patient's Medicine</span>
                                     </div>
-                                    <input type="text" class="form-control" name="umedicine" required value="${erws.rows[0].MEDICINE}">
+                                    <input type="text" class="form-control" name="upd-medicine"  value="${erws.rows[0].MEDICINE}" required>
                                 </div>
                                 
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text text-dark">Patient's City</span>
                                     </div>
-                                    <input type="text" class="form-control" name="ucity" value="${erws.rows[0].CITY}" disabled>
+                                    <input type="text" class="form-control" value="${erws.rows[0].CITY}" disabled>
                                 </div>
-                                
+                                <input type="hidden" name="upd-phone" value="${erws.rows[0].PHONE}">
                                  <div class="input-group justify-content-end"><button class="btn btn-primary " type="submit" value="change" name="update">Update</button></div>
                         </form>
                     </div>
                 </c:if>
             </div>
         </div>
+            </c:otherwise>
+        </c:choose>
+        
+        
         
     </div>
 
