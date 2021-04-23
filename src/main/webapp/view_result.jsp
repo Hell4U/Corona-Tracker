@@ -296,7 +296,7 @@
         window.onload = function() { 
  
             var chart = new CanvasJS.Chart("chartContainer", {
-            theme: "light2",
+            theme: "dark2",
             title: {
                     text: "Recovered in India"
             },
@@ -309,7 +309,7 @@
             },
             data: [{
                     type: "line",
-                    yValueFormatString: "#,##Recovered",
+                    yValueFormatString: "#,## Recovered",
                     dataPoints : <%out.print(dataPoints);%>
             }]
             });
@@ -317,7 +317,7 @@
             chart.render();
             
             var chart1 = new CanvasJS.Chart("chartContainer1", {
-            theme: "light2",
+            theme: "dark2",
             title: {
                     text: "Active in India"
             },
@@ -330,7 +330,7 @@
             },
             data: [{
                     type: "line",
-                    yValueFormatString: "#,##Active",
+                    yValueFormatString: "#,## Active",
                     dataPoints : <%out.print(dataPoints1);%>
             }]
             });
@@ -338,7 +338,7 @@
             chart1.render();
             
             var chart2 = new CanvasJS.Chart("chartContainer2", {
-            theme: "light2",
+            theme: "dark2",
             title: {
                     text: "Deaths in India"
             },
@@ -351,7 +351,7 @@
             },
             data: [{
                     type: "line",
-                    yValueFormatString: "#,##Death",
+                    yValueFormatString: "#,## Death",
                     dataPoints : <%out.print(dataPoints2);%>
             }]
             });
