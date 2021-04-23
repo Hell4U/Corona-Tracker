@@ -5,7 +5,23 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<c:if test="${param.update eq 'change'}">
+    <%
+        String phone=request.getParameter("upd-phone");
+        String address=request.getParameter("upd-address");
+        String status=request.getParameter("upd-status");
+        String medicine=request.getParameter("upd-medicine");
+    %>
+    
+    <sql:update  dataSource="${db}">
+        UPDATE PATIENT SET ADDRESS='<%=address%>', STATUS='<%=status%>', MEDICINE='<%=medicine%>' WHERE PHONE='<%=phone%>'
+    </sql:update>
+         <c:set var="succ" value="Data has been updated."/>
+</c:if>
+
 <!DOCTYPE html>
 <%
     if(session.getAttribute("doctor_username")==null)
@@ -59,8 +75,23 @@
                 <p class="text-danger">NOTE:-THIS CAN BE DONE IF YOU ARE ENABLED BY ADMIN.</p>
             </div>
         </div>
-     
-        <div class="container" id="container">
+        
+        <c:choose>
+            <c:when test="${access eq 'DISABLE'}">
+                <div class="container p-4" role="alert">
+                    <div class="alert alert-warning align-item-ceneter justify-content-center display-4" role="alert">
+                        <strong>WARNING!</strong> You do not have enough rights to do anything.Please contact administrator as soon as possible.
+                    </div>
+                </div>
+            </c:when>
+            
+            <c:otherwise>                
+                <c:if test="${not empty succ}">
+                    <div class="container text-center alert alert-success" role="alert">
+                        <strong>UPDATED!</strong> ${succ}
+                    </div>
+                </c:if>
+                <div class="container" id="container">
             <div class="row">
 
                 <div class="col-xl-3">
@@ -70,31 +101,97 @@
                     </ul>
                 </div>
 
-                <div class="col-xl-9">
-                    <form action="doctor_password_change.jsp" method="post" class="form-area">
-                        <h3 class="text-center text-dark">New Password</h3>
+                <div class="col-xl-3">
+                    <div class="form-area text-center">
+                        <p class="h5">Select your patient</p>
+                            <sql:query var="knt" dataSource="${db}">
+                                SELECT count(*) as cnt FROM PATIENT WHERE DUSERNAME='${username}'
+                            </sql:query>
+                                
+                                <c:choose >
+                                    <c:when test="${knt.rows[0].cnt le 0}">
+                                        <p class="alert alert-warning"><strong>ALERT!</strong>First add your patient.</p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <sql:query var="rws" dataSource="${db}">
+                                            SELECT * FROM PATIENT WHERE DUSERNAME='${username}'
+                                        </sql:query>
+                                        
+                                            <c:forEach var="rds" items="${rws.rows}">
+                                                <div class="list-group">
+                                                    <a class="list-group-item" href="doctor_edit_patient.jsp?edit=<c:out value="${rds.PHONE}"/>">${rds.NAME} ${rds.PHONE}</a>
+                                                </div>
+                                            </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
                         
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text text-dark">New Password</span>
-                            </div>
-                            <input type="password" class="form-control" name="password" required>
-                        </div>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text text-dark">Retype Password</span>
-                            </div>
-                            <input type="password" class="form-control" name="npassword" required>
-                        </div>
-                       
-
-                        <div class="input-group justify-content-end"><button class="btn btn-primary " type="submit" value="change" name="change">Change</button></div>
-                        
-                    </form>
+                    </div>
                 </div>
+                
+                <c:if test="${param.edit!=null}"> 
+                    <div class="col-xl-6">
+                        <form class="form-area text-center" action="doctor_edit_patient.jsp" method="GET">
+                            <h4>Edit Info</h4>
+                                <sql:query var="erws" dataSource="${db}">
+                                            SELECT * FROM PATIENT WHERE PHONE='${param.edit}'
+                                </sql:query>
+                                            
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's Mobile Number</span>
+                                    </div>
+                                    <input type="text" class="form-control" value="${erws.rows[0].PHONE}" disabled>
+                                </div>
+                                            
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's Name</span>
+                                    </div>
+                                    <input type="text" class="form-control" value="${erws.rows[0].NAME}" disabled>
+                                </div>
+                                            
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's Address</span>
+                                    </div>
+                                    <textarea class="form-control" name="upd-address" required>${erws.rows[0].ADDRESS}</textarea>
+                                </div>
+                                            
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's Status</span>
+                                    </div>
+                                    <select class="form-control" id="sel1" name="upd-status" required>
+                                        <option value="Healthy">Healthy</option>
+                                        <option value="Recovered">Recovered</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Dead">Dead</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's Medicine</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="upd-medicine"  value="${erws.rows[0].MEDICINE}" required>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-dark">Patient's City</span>
+                                    </div>
+                                    <input type="text" class="form-control" value="${erws.rows[0].CITY}" disabled>
+                                </div>
+                                <input type="hidden" name="upd-phone" value="${erws.rows[0].PHONE}">
+                                 <div class="input-group justify-content-end"><button class="btn btn-primary " type="submit" value="change" name="update">Update</button></div>
+                        </form>
+                    </div>
+                </c:if>
             </div>
         </div>
+            </c:otherwise>
+        </c:choose>
+        
+        
         
     </div>
 
