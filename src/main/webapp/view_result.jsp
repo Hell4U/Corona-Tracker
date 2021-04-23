@@ -12,11 +12,12 @@
 <%@ page import="com.google.gson.JsonObject"%>
 
 <!DOCTYPE html>
-<html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Covid-19 Statics</title>
     </head>
+    
     <style>
         
         html {
@@ -50,9 +51,10 @@
         }
     </style>
     
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script type="text/javascript">
-        
+    
+    <script>
         <%  
             Connection con;
             Statement st;
@@ -73,7 +75,14 @@
                 con=DriverManager.getConnection("jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6405344","sql6405344","kNClFQPRil");
                 st=con.createStatement();
                 
-                rs=st.executeQuery("SELECT * from PATIENT");
+                String city=request.getParameter("cities");
+                
+                if(city.equals("All")){
+                    rs=st.executeQuery("SELECT * from PATIENT");
+                }
+                else{
+                    rs=st.executeQuery("SELECT * from PATIENT where CITY="+"'"+city+"'");
+                }
                 
                 while(rs.next()){
                     String s1=rs.getString("DATE"),s2=rs.getString("STATUS");
@@ -353,9 +362,13 @@
 
     </script>
     <body>
+        
+        <% String city1=request.getParameter("cities"); %>
+        
+        <%=city1%>
         <div class="row" id="chartContainer" style="height: 33%; width: 100%;"></div>
         <div class="row" id="chartContainer1" style="height: 33%; width: 100%;"></div>
         <div class="row" id="chartContainer2" style="height: 33%; width: 100%;"></div>
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </body>
-</html>
+
