@@ -56,10 +56,18 @@ strong{
   font-family: 'Barlow Semi Condensed', sans-serif;
   background-color: rgba(255, 255, 255, 0.233);
   backdrop-filter: blur(5px);
+
 }
+a:hover{
+    transform: scale(1.5);
+    word-spacing: 1.5px;
+    letter-spacing:1.2px;
+}
+
 a{
     color:aqua;
     text-decoration: none;
+    transition: transform 500ms ease-in-out;
 }
 
 @keyframes heading-appear{

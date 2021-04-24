@@ -18,14 +18,13 @@
         <title>Covid-19 Statics</title>
     </head>
     <link rel="stylesheet" href="./css/view_result.css">
-    <style>
 
-    </style>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <script>
+        <% String city1=request.getParameter("cities"); %>
         <%  
             Connection con;
             Statement st;
@@ -269,7 +268,7 @@
             var chart = new CanvasJS.Chart("chartContainer", {
             theme: "dark2",
             title: {
-                    text: "Recovered in India"
+                    text: "Recovered in <%=city1%>"
             },
             axisX: {
                     title: "Recovered"
@@ -290,7 +289,7 @@
             var chart1 = new CanvasJS.Chart("chartContainer1", {
             theme: "dark2",
             title: {
-                    text: "Active in India"
+                    text: "Active in <%=city1%>"
             },
             axisX: {
                     title: "Active Cases"
@@ -311,7 +310,7 @@
             var chart2 = new CanvasJS.Chart("chartContainer2", {
             theme: "dark2",
             title: {
-                    text: "Deaths in India"
+                    text: "Deaths in <%=city1%>"
             },
             axisX: {
                     title: "Deaths"
@@ -334,7 +333,7 @@
     </script>
     <body>
         
-        <% String city1=request.getParameter("cities"); %>
+        
         <main>
             <p class="heading">Your selected city is <strong><%=city1%></strong></p>
             <div class="chart-container">
