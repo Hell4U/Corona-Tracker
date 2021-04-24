@@ -17,38 +17,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Covid-19 Statics</title>
     </head>
-    
+    <link rel="stylesheet" href="./css/view_result.css">
     <style>
-        
-        html {
-            height: 100%;
-            width: 100%;
-        }
 
-        body {
-            display: table;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-        }
-
-        .row {
-            display: table-row;
-            height: 33%;
-        }
-
-        .row:nth-child(1) {
-            background-color: #eee;
-        }
-
-        .row:nth-child(2) {
-            background-color: #ddd;
-        }
-        
-        .row:nth-child(3) {
-            background-color: #fff;
-        }
     </style>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -364,11 +335,20 @@
     <body>
         
         <% String city1=request.getParameter("cities"); %>
+        <main>
+            <p class="heading">Your selected city is <strong><%=city1%></strong></p>
+            <div class="chart-container">
+                <div class="chart" id="chartContainer"></div>
+                <div class="chart" id="chartContainer1"></div>
+                <div class="chart" id="chartContainer2"></div>
+                <div class="chart" ><a href="index.html">Go To Home Page</a></div>
+            </div>
+        </main>
+                
         
-        <%=city1%>
-        <div class="row" id="chartContainer" style="height: 33%; width: 100%;"></div>
-        <div class="row" id="chartContainer1" style="height: 33%; width: 100%;"></div>
-        <div class="row" id="chartContainer2" style="height: 33%; width: 100%;"></div>
+        
+
+
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </body>
 
