@@ -57,7 +57,7 @@
                 while(rs.next()){
                     String s1=rs.getString("DATE"),s2=rs.getString("STATUS");
                     
-                    if(s2.equals("Healthy")){
+                    if(s2.equals("Recovered")){
                         if(s1.charAt(5)=='0'){
                             
                             int p1=0;

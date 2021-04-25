@@ -162,7 +162,6 @@
                                         <span class="input-group-text text-dark">Patient's Status</span>
                                     </div>
                                     <select class="form-control" id="sel1" name="upd-status" required>
-                                        <option value="Healthy">Healthy</option>
                                         <option value="Recovered">Recovered</option>
                                         <option value="Positive">Positive</option>
                                         <option value="Dead">Dead</option>
