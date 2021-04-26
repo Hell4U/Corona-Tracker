@@ -70,8 +70,8 @@
                 </div>
 
                 <div class="col-xl-9">
-                    <div class="form-area">
-                        <h3 class="text-center text-dark">Add Doctor</h3>
+                    <div class="form-area text-center">
+                        <h3 class="text-center text-dark">View Active Doctor</h3>
                         <%
                         
                             
